@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>23/24 Timetable</h1>
+    <form method="POST" action="">
+        {{ refresh_form.hidden_tag() }} <!-- csrf token -->
+        <div class="form-group mt-2" title="Refresh">
+            {{ refresh_form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+    <table class="timetable-table">
+        <tr id="timetable-days-row">
+            <td style="text-align: center; font-weight: bold;">Time</td>
+            {% for day in days %}
+                <td class="timetable-days-row-item">{{ day }}</td>
+            {% endfor %}
+        </tr>
+        {% for time in times %}
+            <tr class="timetable-times-row">
+                <td class="timetable-times-col-item">{{ time }}</td>
+                {% for day in days %}
+                    <td class="timetable-outer-timeslot-item">
+                        <table class="timetable-inner-timeslot-table">
+                            {% for class in classes %}
+                                {% if class.day == day and class.starttime == time%} 
+                                    <tr class="timetable-inner-timeslot-row" title="{{ class.pace }}">
+                                        <td class="timetable-inner-timeslot-item" style="text-align: right;"><a href="/timetable/subject/{{ class.subject }}">{{ class.subject }}</a></td>
+                                        <td class="timetable-inner-timeslot-item">{{ " (" + class.level[:1] + ") " }}</td>
+                                        <td class="timetable-inner-timeslot-item"><a href="/timetable/group/{{ class.group }}">{{ class.group }}</a></td>
+                                        <td class="timetable-inner-timeslot-item">{{ " - " }}</td>
+                                        <td class="timetable-inner-timeslot-item">{{ class.stream }}</td> 
+                                        <td class="timetable-inner-timeslot-item">{{ " - " }}</td> 
+                                        <td class="timetable-inner-timeslot-item"><a href="/timetable/teacher/{{ class.acronym }}">{{ class.acronym }}</a></td>
+                                        <td class="timetable-inner-timeslot-item">{{ " - " }}</td>
+                                        <td class="timetable-inner-timeslot-item", style="text-align: left;"><a href="/timetable/room/{{ class.room }}">{{ class.room }}</a></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <p style="margin-top: 10px;">{{ scheduled_classes }} classes scheduled of {{ total_classes }}</p>
+{% endblock content %}

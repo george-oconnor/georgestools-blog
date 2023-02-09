@@ -12,6 +12,7 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 mail = Mail()
 
+from flaskblog.timetable.routes import timetable
 from flaskblog.users.routes import users
 from flaskblog.posts.routes import posts
 from flaskblog.main.routes import main
@@ -30,5 +31,6 @@ def create_app(config_class=Config):
     app.register_blueprint(posts)
     app.register_blueprint(main)
     app.register_blueprint(errors)
+    app.register_blueprint(timetable)
 
     return app

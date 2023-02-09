@@ -41,3 +41,22 @@ class Post(db.Model):
 
     def __repr__(self) -> str:
         return f"Post('{self.title}', '{self.date_posted}')"
+
+class Class(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    goc_id = db.Column(db.String(100), nullable=False)
+    subject = db.Column(db.String(100), nullable=False)
+    level = db.Column(db.String(100), nullable=False)
+    pace = db.Column(db.String(100), nullable=True)
+    group = db.Column(db.String(10), nullable=False)
+    teacher = db.Column(db.String(100), nullable=False)
+    acronym = db.Column(db.String(10), nullable=False)
+    day = db.Column(db.String(50), nullable=True)
+    starttime = db.Column(db.String(50), nullable=True)
+    duration = db.Column(db.String(50), nullable=True)
+    endtime = db.Column(db.String(50), nullable=True)
+    stream = db.Column(db.String(10), nullable=True)
+    room = db.Column(db.String(10), nullable=True)
+
+    def __repr__(self) -> str:
+        return f"Class({self.subject} ({self.level}) {self.group} Year - {self.stream} - {self.acronym} )"

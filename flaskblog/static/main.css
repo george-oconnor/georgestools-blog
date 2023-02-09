@@ -23,6 +23,40 @@ body {
   a:active {
     text-decoration: none;
   }
+
+  .timetable-table {
+    margin-top: 10px;
+    border: 2px solid black;
+  }
+
+  .timetable-times-col-item {
+    border: 2px solid black;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .timetable-days-row-item {
+    border: 2px solid black;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .timetable-outer-timeslot-item {
+    border: 1px solid black;
+  }
+
+  .timetable-inner-timeslot-table {
+    border: 0px dashed red;
+    margin: auto;
+  }
+
+  .timetable-inner-timeslot-row {
+    margin:auto;
+  }
+
+  .timetable-inner-timeslot-item {
+    text-align: center;
+  }
   
   .bg-steel {
     background-color: #5f788a;
